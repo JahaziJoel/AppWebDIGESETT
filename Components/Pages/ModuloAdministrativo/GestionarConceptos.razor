@@ -1,0 +1,70 @@
+@using AppDIGESETT.Components.Layout
+@layout MainLayoutAdministrativo
+@page "/modulo-administrativo/conceptos"
+@using AppDIGESETT.Models
+@using AppDIGESETT.Services
+@inject AdminService adminService
+
+<h3>Gestionar Conceptos de Multas</h3>
+
+<!-- Listado de conceptos -->
+@if (multas == null)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripción</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var multa in multas)
+            {
+                <tr>
+                    <td>@multa.Id</td>
+                    <td>@multa.Descripcion</td>
+                    <td>@multa.Monto</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Formulario para agregar un concepto -->
+<h4>Agregar Nuevo Concepto</h4>
+<EditForm Model="nuevaMulta" OnValidSubmit="AgregarConcepto">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <InputText id="descripcion" @bind-Value="nuevaMulta.Descripcion" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="monto" class="form-label">Monto</label>
+        <InputNumber id="monto" @bind-Value="nuevaMulta.Monto" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Concepto</button>
+</EditForm>
+
+@code {
+    private List<Multa>? multas;
+    private Multa nuevaMulta = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        multas = await adminService.GetMultasAsync();
+    }
+
+    private async Task AgregarConcepto()
+    {
+        await adminService.CrearMultaAsync(nuevaMulta);
+        nuevaMulta = new();
+        multas = await adminService.GetMultasAsync();
+    }
+}

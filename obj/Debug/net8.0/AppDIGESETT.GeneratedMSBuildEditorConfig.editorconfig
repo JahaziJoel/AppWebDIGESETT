@@ -1,0 +1,131 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = AppDIGESETT
+build_property.RootNamespace = AppDIGESETT
+build_property.ProjectDir = C:\C#\AppDIGESETT\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\C#\AppDIGESETT
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/C\#/AppDIGESETT/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Layout/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTG9naW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Layout/MainLayoutAdministrativo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dEFkbWluaXN0cmF0aXZvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Layout/MainLayoutAgente.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dEFnZW50ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Layout/MainLayoutOficinaCentral.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dE9maWNpbmFDZW50cmFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Layout/NavMenuAdministrativo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudUFkbWluaXN0cmF0aXZvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Layout/NavMenuAgente.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudUFnZW50ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Layout/NavMenuOficinaCentral.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudU9maWNpbmFDZW50cmFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/Menu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNZW51LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloAdministrativo/GestionarConceptos.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9BZG1pbmlzdHJhdGl2b1xHZXN0aW9uYXJDb25jZXB0b3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloAdministrativo/GestionarUsuarios.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9BZG1pbmlzdHJhdGl2b1xHZXN0aW9uYXJVc3Vhcmlvcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloAgente/AcercaDe.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9BZ2VudGVcQWNlcmNhRGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloAgente/Comision.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9BZ2VudGVcQ29taXNpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloAgente/ListadoMultas.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9BZ2VudGVcTGlzdGFkb011bHRhcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloAgente/MapaMultas.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9BZ2VudGVcTWFwYU11bHRhcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloAgente/RegistrarMulta.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9BZ2VudGVcUmVnaXN0cmFyTXVsdGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloOficinaCentral/GestionarAgentes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9PZmljaW5hQ2VudHJhbFxHZXN0aW9uYXJBZ2VudGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloOficinaCentral/GestionarMultas.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9PZmljaW5hQ2VudHJhbFxHZXN0aW9uYXJNdWx0YXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/ModuloOficinaCentral/ReporteIngresos.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNb2R1bG9PZmljaW5hQ2VudHJhbFxSZXBvcnRlSW5ncmVzb3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/C\#/AppDIGESETT/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-fzuaxr9v2x
+
+[C:/C\#/AppDIGESETT/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-l8ky69ey37

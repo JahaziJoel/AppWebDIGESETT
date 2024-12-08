@@ -1,0 +1,69 @@
+@page "/modulo-agente/registrar-multa"
+@using AppDIGESETT.Models
+@using AppDIGESETT.Components.Layout
+@layout MainLayoutAgente
+
+<h3>Registrar Multa</h3>
+
+<EditForm Model="multa" OnValidSubmit="RegistraMulta" class="row">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group col-6">
+        <label for="cedula">Cédula:</label>
+        <InputText id="cedula" @bind-Value="multa.Cedula" class="form-control" />
+    </div>
+    <div class="form-group col-6">
+        <label for="nombre">Nombre:</label>
+        <InputText id="nombre" @bind-Value="multa.Nombre" class="form-control" />
+    </div>
+    <div class="form-group col-6">
+        <label for="concepto">Concepto:</label>
+        <InputText id="concepto" @bind-Value="multa.Concepto" class="form-control" />
+    </div>
+    <div class="form-group col-6">
+        <label for="coordenadas">Coordenadas:</label>
+        <InputText id="coordenadas" @bind-Value="multa.Coordenadas" class="form-control" />
+    </div>
+    <div class="form-group col-6">
+        <label for="foto">Foto:</label>
+        <InputFile OnChange="SeleccionarFoto" class="form-control" />
+    </div>
+    <div class="form-group col-6">
+        <label for="fecha">Fecha:</label>
+        <InputDate id="fecha" @bind-Value="multa.Fecha" class="form-control" />
+    </div>
+    <div class="form-group col-6">
+        <label for="estado">Estado:</label>
+        <InputSelect id="estado" @bind-Value="multa.Estado" class="form-control">
+            <option value="">Seleccione un estado</option>
+            <option value="Activa">Activa</option>
+            <option value="Pagada">Pagada</option>
+            <option value="Perdonada">Perdonada</option>
+        </InputSelect>
+    </div>
+    <div class="form-group col-6">
+        <label for="descripcion">Descripción:</label>
+        <InputTextArea id="descripcion" @bind-Value="multa.Descripcion" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary col-2 mt-2">Registrar</button>
+</EditForm>
+
+@code {
+    private Multa multa = new Multa();
+
+    private async Task SeleccionarFoto(InputFileChangeEventArgs e)
+    {
+        var archivo = e.File;
+        // Simular lógica de guardado (como almacenar el archivo en el servidor o base de datos)
+        multa.Foto = archivo.Name;
+        Console.WriteLine($"Foto seleccionada: {archivo.Name}");
+    }
+
+    private void RegistraMulta()
+    {
+        // Lógica para registrar la multa
+        Console.WriteLine($"Cédula: {multa.Cedula}, Nombre: {multa.Nombre}, Foto: {multa.Foto}");
+        // Aquí puedes guardar en la base de datos o llamar a una API
+    }
+}

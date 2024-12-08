@@ -1,0 +1,76 @@
+@page "/modulo-administrativo/usuarios"
+@using AppDIGESETT.Components.Layout
+@layout MainLayoutAdministrativo
+@using AppDIGESETT.Models
+@using AppDIGESETT.Services
+@inject AdminService adminService
+
+<h3>Gestionar Usuarios</h3>
+
+<!-- Listado de usuarios -->
+@if (agentes == null)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var agente in agentes)
+            {
+                <tr>
+                    <td>@agente.Id</td>
+                    <td>@agente.Cedula</td>
+                    <td>@agente.Nombre</td>
+                    <td>@agente.Rol</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Formulario para agregar un usuario -->
+<h4>Agregar Nuevo Usuario</h4>
+<EditForm Model="nuevoAgente" OnValidSubmit="AgregarUsuario">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="cedula" class="form-label">Cédula</label>
+        <InputText id="cedula" @bind-Value="nuevoAgente.Cedula" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <InputText id="nombre" @bind-Value="nuevoAgente.Nombre" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="rol" class="form-label">Rol</label>
+        <InputText id="rol" @bind-Value="nuevoAgente.Rol" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Usuario</button>
+</EditForm>
+
+@code {
+    private List<Agente>? agentes;
+    private Agente nuevoAgente = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        agentes = await adminService.GetAgentesAsync();
+    }
+
+    private async Task AgregarUsuario()
+    {
+        await adminService.CrearAgenteAsync(nuevoAgente);
+        nuevoAgente = new();
+        agentes = await adminService.GetAgentesAsync();
+    }
+}

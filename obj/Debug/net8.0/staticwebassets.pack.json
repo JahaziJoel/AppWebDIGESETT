@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\C#\\AppDIGESETT\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\AppDIGESETT.bundle.scp.css",
+      "PackagePath": "staticwebassets\\AppDIGESETT.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\C#\\AppDIGESETT\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\C#\\AppDIGESETT\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\C#\\AppDIGESETT\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\C#\\AppDIGESETT\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\C#\\AppDIGESETT\\wwwroot\\image\\perfil1.PNG",
+      "PackagePath": "staticwebassets\\image\\perfil1.PNG"
+    },
+    {
+      "Id": "C:\\C#\\AppDIGESETT\\wwwroot\\image\\perfil2.jpg",
+      "PackagePath": "staticwebassets\\image\\perfil2.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AppDIGESETT.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AppDIGESETT.props",
+      "PackagePath": "build\\AppDIGESETT.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AppDIGESETT.props",
+      "PackagePath": "buildMultiTargeting\\AppDIGESETT.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AppDIGESETT.props",
+      "PackagePath": "buildTransitive\\AppDIGESETT.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

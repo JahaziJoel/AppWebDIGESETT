@@ -1,0 +1,97 @@
+@page "/"
+@inject NavigationManager Nav
+@using AppDIGESETT.Data
+@inject DataContext context
+@using AppDIGESETT.Models
+@using AppDIGESETT.Components.Layout
+@layout LoginLayout 
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.EntityFrameworkCore
+
+<div class="container h-100 d-flex align-items-center justify-content-center">
+    <div class="row w-100 shadow-lg rounded" style="max-width: 800px; background-color: #ffffff;">
+        <!-- Imagen -->
+        <div class="col-md-6 d-none d-md-flex p-4 align-items-center justify-content-center">
+            <img src="https://z101digital.com/wp-content/uploads/2019/04/agentes-de-la-digesett-22042019-kelvin-dela-cruz-2-1024x682.jpeg"
+                 class="img-fluid rounded-start" alt="Login Image" />
+        </div>
+
+        <!-- Formulario -->
+        <div class="col-md-6 p-4">
+            <h3 class="text-center mb-4 text-primary">Iniciar Sesión</h3>
+            <EditForm Model="@agenteLogin" OnValidSubmit="@ValidarCredenciales" FormName="loginName">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="mb-3">
+                    <label for="cedula" class="form-label">🆔 Cédula</label>
+                    <InputText id="cedula" @bind-Value="@agenteLogin.Cedula" class="form-control" />
+                    <ValidationMessage For="@(() => agenteLogin.Cedula)" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="clave" class="form-label">🔒 Clave</label>
+                    <InputText id="clave" @bind-Value="@agenteLogin.Clave" class="form-control" type="password" />
+                    <ValidationMessage For="@(() => agenteLogin.Clave)" />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+            </EditForm>
+
+            @if (!string.IsNullOrEmpty(mensajeError))
+            {
+                <p class="text-danger mt-3">@mensajeError</p>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private Agente agenteLogin = new Agente();
+    private string mensajeError = string.Empty;
+
+    private async Task ValidarCredenciales()
+    {
+        // Lógica de validación de credenciales
+        var cedula = agenteLogin.Cedula?.Trim();
+        var clave = agenteLogin.Clave?.Trim();
+
+        if (string.IsNullOrEmpty(cedula) || string.IsNullOrEmpty(clave))
+        {
+            mensajeError = "La cédula y la clave son obligatorias.";
+            StateHasChanged();
+            return;
+        }
+
+        // Consulta de agente en la base de datos
+        var agente = await context.Agentes
+            .FirstOrDefaultAsync(a => a.Cedula.ToLower() == cedula.ToLower() && a.Clave == clave);
+
+        if (agente != null)
+        {
+            if (agente.Rol == "Agente")
+            {
+                Nav.NavigateTo("/modulo-agente");
+            }
+            else if (agente.Rol == "Oficina")
+            {
+                Nav.NavigateTo("/modulo-oficina-central");
+            }
+            else if (agente.Rol == "Administrador")
+            {
+                Nav.NavigateTo("/modulo-administrativo");
+            }
+            else
+            {
+                mensajeError = "Rol no reconocido.";
+            }
+        }
+        else
+        {
+            mensajeError = "Cédula o clave incorrecta.";
+        }
+
+        StateHasChanged();
+    }
+}

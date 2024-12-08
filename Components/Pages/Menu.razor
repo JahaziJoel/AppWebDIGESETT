@@ -1,0 +1,32 @@
+@page "/menu"
+@inject NavigationManager Navigation
+
+
+@{
+    // Definir las rutas como variables
+    string registrarRuta = "/registrar-multa";
+    string listadoRuta = "/listado-multas";
+    string mapaRuta = "/mapa-multas";
+    string comisionRuta = "/comision";
+    string acercaDeRuta = "/acerca-de";
+    string loginRuta = "/";
+}
+
+<h3>Menú Principal</h3>
+<div class="menu">
+    <button @onclick="() => Navigation.NavigateTo(registrarRuta)">📝 Registrar Multa</button>
+    <button @onclick="() => Navigation.NavigateTo(listadoRuta)">📋 Listado de Multas</button>
+    <button @onclick="() => Navigation.NavigateTo(mapaRuta)">🗺️ Mapa con Mis Multas</button>
+    <button @onclick="() => Navigation.NavigateTo(comisionRuta)">💰 Comisión por Mes</button>
+    <button @onclick="() => Navigation.NavigateTo(acercaDeRuta)">👤 Acerca de</button>
+    <button @onclick="() => Navigation.NavigateTo(loginRuta)">🚪 Salir</button>
+</div>
+
+<style>
+    .menu button {
+        display: block;
+        margin: 10px 0;
+        padding: 15px;
+        font-size: 18px;
+    }
+</style>

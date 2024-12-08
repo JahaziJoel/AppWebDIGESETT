@@ -1,0 +1,154 @@
+@using AppDIGESETT.Components.Layout
+@layout MainLayoutOficinaCentral
+@page "/gestionar-agentes"
+@using AppDIGESETT.Data
+@inject DataContext Context
+@inject NavigationManager NavManager
+@using AppDIGESETT.Models
+@using Microsoft.EntityFrameworkCore
+
+<h3>Gestionar Agentes</h3>
+
+<!-- Botón para agregar un nuevo agente -->
+<button class="btn btn-primary mb-3" @onclick="AbrirModalAgregar">Agregar Agente</button>
+
+<!-- Tabla de agentes -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var agente in agentes)
+        {
+            <tr>
+                <td>@agente.Cedula</td>
+                <td>@agente.Nombre</td>
+                <td>@(agente.Activo ? "Activo" : "Desactivado")</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" @onclick="() => AbrirModalEditar(agente)">Editar</button>
+                    <button class="btn btn-sm btn-danger" @onclick="() => DesactivarAgente(agente)">Desactivar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal para agregar o editar agentes -->
+@if (mostrarModal)
+{
+    <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@tituloModal</h5>
+                    <button type="button" class="btn-close" @onclick="CerrarModal"></button>
+                </div>
+                <div class="modal-body">
+                    <EditForm Model="agenteSeleccionado" OnValidSubmit="GuardarAgente">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+
+                        <div class="mb-3">
+                            <label for="cedula" class="form-label">Cédula</label>
+                            <InputText id="cedula" @bind-Value="agenteSeleccionado.Cedula" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <InputText id="nombre" @bind-Value="agenteSeleccionado.Nombre" class="form-control" />
+                        </div>
+
+                        <div class="form-check">
+                            <InputCheckbox id="activo" @bind-Value="agenteSeleccionado.Activo" class="form-check-input" />
+                            <label for="activo" class="form-check-label">Activo</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<Agente> agentes = new();
+    private Agente agenteSeleccionado = new();
+    private bool mostrarModal = false;
+    private string tituloModal = "Agregar Agente";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarAgentes();
+    }
+
+    private async Task CargarAgentes()
+    {
+        // Cargar la lista de agentes desde la base de datos
+        agentes = await Context.Agentes.ToListAsync();
+    }
+
+    private void AbrirModalAgregar()
+    {
+        agenteSeleccionado = new Agente { Activo = true }; // Nuevo agente por defecto activo
+        tituloModal = "Agregar Agente";
+        mostrarModal = true;
+    }
+
+    private void AbrirModalEditar(Agente agente)
+    {
+        agenteSeleccionado = new Agente
+        {
+            Id = agente.Id,
+            Cedula = agente.Cedula,
+            Nombre = agente.Nombre,
+            Activo = agente.Activo
+        };
+        tituloModal = "Editar Agente";
+        mostrarModal = true;
+    }
+
+    private void CerrarModal()
+    {
+        mostrarModal = false;
+    }
+
+    private async Task GuardarAgente()
+    {
+        if (agenteSeleccionado.Id == 0)
+        {
+            // Agregar nuevo agente
+            Context.Agentes.Add(agenteSeleccionado);
+        }
+        else
+        {
+            // Editar agente existente
+            var agenteExistente = await Context.Agentes.FindAsync(agenteSeleccionado.Id);
+            if (agenteExistente != null)
+            {
+                agenteExistente.Cedula = agenteSeleccionado.Cedula;
+                agenteExistente.Nombre = agenteSeleccionado.Nombre;
+                agenteExistente.Activo = agenteSeleccionado.Activo;
+            }
+        }
+        await Context.SaveChangesAsync();
+        mostrarModal = false;
+        await CargarAgentes();
+    }
+
+    private async Task DesactivarAgente(Agente agente)
+    {
+        var agenteExistente = await Context.Agentes.FindAsync(agente.Id);
+        if (agenteExistente != null)
+        {
+            agenteExistente.Activo = false;
+            await Context.SaveChangesAsync();
+        }
+        await CargarAgentes();
+    }
+}

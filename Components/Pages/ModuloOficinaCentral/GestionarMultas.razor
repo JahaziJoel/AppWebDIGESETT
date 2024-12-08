@@ -1,0 +1,128 @@
+@using AppDIGESETT.Components.Layout
+@layout MainLayoutOficinaCentral
+@page "/gestionar-multas"
+@inject NavigationManager Nav
+@inject DataContext context
+@using AppDIGESETT.Data
+@using AppDIGESETT.Models
+@using Microsoft.EntityFrameworkCore
+
+<h3 class="text-primary">Gestionar Multas</h3>
+
+<div class="container">
+    <!-- Barra de búsqueda -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <input type="text" @bind="searchTerm" class="form-control" placeholder="Buscar por nombre o cédula" />
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100" @onclick="BuscarMultas">🔍 Buscar</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-secondary w-100" @onclick="LimpiarBusqueda">🧹 Limpiar</button>
+        </div>
+    </div>
+
+    <!-- Tabla de multas -->
+    @if (multas == null)
+    {
+        <p class="text-info">Cargando multas...</p>
+    }
+    else if (!multas.Any())
+    {
+        <p class="text-warning">No se encontraron multas para la búsqueda realizada.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Concepto</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var multa in multas)
+                {
+                    <tr>
+                        <td>@multa.Cedula</td>
+                        <td>@multa.Nombre</td>
+                        <td>@multa.Concepto</td>
+                        <td>@multa.Estado</td>
+                        <td>
+                            @if (multa.Estado != "Cobrada" && multa.Estado != "Perdonada")
+                            {
+                                <button class="btn btn-success btn-sm" @onclick="() => CambiarEstado(multa, estadoCobrada)">💰 Cobrar</button>
+                                <button class="btn btn-danger btn-sm" @onclick="() => CambiarEstado(multa, estadoPerdonada)">❌ Perdonar</button>
+
+
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Finalizada</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    private string estadoPerdonada = "Perdonada";
+    private string estadoCobrada = "Perdonada";
+    private List<Multa> multas;
+    private string searchTerm = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarMultas();
+    }
+
+    private async Task CargarMultas()
+    {
+        multas = await context.Multas.ToListAsync();
+    }
+
+    private async Task BuscarMultas()
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            await CargarMultas();
+        }
+        else
+        {
+            multas = await context.Multas
+                .Where(m => m.Nombre.Contains(searchTerm) || m.Cedula.Contains(searchTerm))
+                .ToListAsync();
+        }
+    }
+
+    private void LimpiarBusqueda()
+    {
+        searchTerm = string.Empty;
+        _ = CargarMultas();
+    }
+
+    private async Task CambiarEstado(Multa multa, string nuevoEstado)
+    {
+        multa.Estado = nuevoEstado;
+        context.Multas.Update(multa);
+        await context.SaveChangesAsync();
+
+        if (nuevoEstado == "Perdonada")
+        {
+            Console.WriteLine($"La multa con cédula {multa.Cedula} fue perdonada y no generará comisión para el agente.");
+        }
+        else if (nuevoEstado == "Cobrada")
+        {
+            Console.WriteLine($"La multa con cédula {multa.Cedula} fue cobrada.");
+        }
+
+        await BuscarMultas(); // Actualiza la lista con los cambios
+    }
+}

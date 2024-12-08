@@ -1,0 +1,78 @@
+@page "/modulo-agente"
+@inject MultaService MultaService
+@using AppDIGESETT.Services
+@using AppDIGESETT.Components.Layout
+@layout MainLayoutAgente
+@inject NavigationManager Nav
+@using AppDIGESETT.Models
+@rendermode InteractiveServer
+<h3>Listado de Multas</h3>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <button class="btn btn-primary" @onclick="RegistrarNuevaMulta">Nueva Multa</button>
+</div>
+
+@if (multas == null)
+{
+    <p>Cargando multas...</p>
+}
+else if (!multas.Any())
+{
+    <p>No se han registrado multas.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Concepto</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var multa in multas)
+            {
+                <tr>
+                    <td>@multa.Cedula</td>
+                    <td>@multa.Nombre</td>
+                    <td>@multa.Concepto</td>
+                    <td>
+                        @if (multa.Estado == "Activa")
+                        {
+                            <span class="badge bg-warning">@multa.Estado</span>
+                        }
+                        else if (multa.Estado == "Pagada")
+                        {
+                            <span class="badge bg-success">@multa.Estado</span>
+                        }
+                        else if (multa.Estado == "Perdonada")
+                        {
+                            <span class="badge bg-secondary">@multa.Estado</span>
+                        }
+                    </td>
+                    <td>@multa.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Multa> multas;
+
+    // Método para cargar las multas
+    protected override async Task OnInitializedAsync()
+    {
+        multas = await MultaService.ObtenerMultasAsync();
+    }
+
+    // Método para manejar el clic del botón "Nueva Multa"
+    private void RegistrarNuevaMulta()
+    {
+        // Navegar a la página de registro de multas
+        Nav.NavigateTo("/registrar-multa");
+    }
+}
